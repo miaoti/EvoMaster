@@ -1410,7 +1410,7 @@ class EMConfig {
     @Experimental
     @Min(1.0)
     @Cfg("Mutating a random call for several time and pick the best candidate " +
-            "with minimum probabilty of being 400.")
+            "with minimum probability of being 400.")
     var maxCallRandomMutation = 10
 
     enum class AIClassificationRepairActivation{
