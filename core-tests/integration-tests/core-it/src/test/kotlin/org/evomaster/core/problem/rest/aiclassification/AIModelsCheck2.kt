@@ -29,14 +29,14 @@ import org.evomaster.core.search.action.Action
 import org.evomaster.core.search.service.Randomness
 
 
-class AIModelsCheck : IntegrationTestRestBase() {
+class AIModelsCheck2 : IntegrationTestRestBase() {
 
     companion object {
         @JvmStatic
         fun init() {
             initClass(MultiTypeController())
 
-//             initClass(AllOrNoneController())
+//            initClass(AllOrNoneController())
 //            initClass(ArithmeticController())
 //             initClass(BasicController())
 //            initClass(ImplyController())
@@ -49,7 +49,7 @@ class AIModelsCheck : IntegrationTestRestBase() {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            val test = AIModelsCheck()
+            val test = AIModelsCheck2()
             init()                        // initialize controllers
             test.initializeTest()         // create injector
 
@@ -66,7 +66,7 @@ class AIModelsCheck : IntegrationTestRestBase() {
     val decisionMaking = "PROBABILITY" // Choose "PROBABILITY" or "THRESHOLD"
     val metricType = "TIME_WINDOW"
     val warmUpRep = 10
-    val maxAttemptRepair = 100 // i.e., the classifier has 10 times the chances to pick an action with non-400 response
+    val maxAttemptRepair = 10 // i.e., the classifier has 10 times the chances to pick an action with non-400 response
 
     val runIterations = 500
     val saveReport = false
@@ -168,7 +168,7 @@ class AIModelsCheck : IntegrationTestRestBase() {
             val metrics = aiGlobalClassifier.estimateMetrics(action.endpoint)
 
             //Execute the action if the classifier is still weak
-            if(!(metrics.accuracy > 0.5 && metrics.f1Score400 > 0.5)){
+            if(!(metrics.accuracy > 0.5 && metrics.f1Score400 > 0.0)){
 
                 println("The classifier is weak for $endPoint")
                 val result = ExtraTools.executeRestCallAction(action, "$baseUrlOfSut")
@@ -182,32 +182,34 @@ class AIModelsCheck : IntegrationTestRestBase() {
                 println("The classifier is good enough for $endPoint")
                 val n = config.maxRepairAttemptsInResponseClassification
 
-                for (j in 0 until n) {
-                    val classification = aiGlobalClassifier.classify(action)
-                    val p = classification.probabilityOf400()
-
-                    // Stop attempts to repair if the classifier predicts a non-400 response
-                    val predictionOfStatusCode = classification.prediction()
-                    if (predictionOfStatusCode==400){
-                        val repairOrNot = when(config.aiClassifierRepairActivation){
-
-                            EMConfig.AIClassificationRepairActivation.THRESHOLD ->
-                                p >= config.classificationRepairThreshold
-
-                            EMConfig.AIClassificationRepairActivation.PROBABILITY ->
-                                randomness.nextBoolean(p)
-
-                        }
-
-                        if(repairOrNot){
-                            repairAction(action) // identical to create a new action based on resampling
-                        } else {
-                            break  //break the repeat
-                        }
-                    }else{
-                        break //break the repeat
-                    }
+                val candidates = mutableListOf<Pair<RestCallAction, Double>>()
+                // Generate independent candidate calls
+                repeat(n) {
+                    val candidate = action.copy() as RestCallAction
+                    candidate.randomize(randomness, forceNewValue = true)
+                    val p = aiGlobalClassifier.classify(candidate).probabilityOf400()
+                    candidates.add(candidate to p)
                 }
+                // Pick the best candidate (minimum p(400))
+                val best = candidates.minByOrNull { it.second } ?: return
+                // Apply the best candidate to the original call (gene-level copy)
+                for (target in action.parameters) {
+                    val source = best.first.parameters.find {
+                        it::class == target::class && it.name == target.name
+                    } ?: continue
+
+                    target.primaryGene().copyValueFrom(source.primaryGene())
+                    target.primaryGene().forceNewTaints()
+                }
+                println(
+                    candidates.joinToString(prefix = "All the p400 are: [", postfix = "]") { (_, p) ->
+                        "%.2f".format(p)
+                    }
+                )
+                val geneValuesBestAction = action.parameters
+                    .map { it.primaryGene().getValueAsRawString().replace("EVOMASTER", "") }
+                println("Input Genes Best Action: ${geneValuesBestAction.joinToString(", ")}")
+
 
                 val result = ExtraTools.executeRestCallAction(action, "$baseUrlOfSut")
                 println("True Response: ${result.getStatusCode()}")

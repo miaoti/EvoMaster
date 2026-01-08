@@ -10,7 +10,7 @@ class KNN400Classifier(
     warmup: Int = 10,
     encoderType: EMConfig.EncoderType = EMConfig.EncoderType.NORMAL,
     metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
-    private val k: Int = 3,
+    private val k: Int = 5,
     private val maxStoredSamples: Int = 10000,
     randomness: Randomness
 ) : AbstractProbabilistic400Classifier<KNN400EndpointModel>(

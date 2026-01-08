@@ -150,6 +150,30 @@ class AIResponseClassifier : AIModel {
             return
         }
 
+
+        // Generate m candidate calls
+        val m = config.maxCallRandomMutation
+        val candidates = mutableListOf<Pair<RestCallAction, Double>>()
+        repeat(m) {
+            val candidate = call.copy() as RestCallAction
+            candidate.randomize(randomness, forceNewValue = true)
+
+            val p = classify(candidate).probabilityOf400()
+            candidates.add(candidate to p)
+        }
+        // Pick the best candidate with a minimum probability of being 400
+        val best = candidates.minByOrNull { it.second } ?: return
+        // Replace the best candidate to the original call
+        for (target in call.parameters) {
+            val source = best.first.parameters.find {
+                it::class == target::class && it.name == target.name
+            } ?: continue
+
+            target.primaryGene().copyValueFrom(source.primaryGene())
+            target.primaryGene().forceNewTaints()
+        }
+
+        // Attempt repair if the candidate is not good enough, i.e., p(400) is not small
         val n = config.maxRepairAttemptsInResponseClassification
 
         repeat(n) {
@@ -211,8 +235,8 @@ class AIResponseClassifier : AIModel {
         // Get the status code and skip if it is null
         val trueStatusCode = output.getStatusCode() ?: return true
 
-        // optionally skip if server-side error (500)
-        return trueStatusCode == 500 && config.skipAIModelUpdateWhenResponseIs500
+        // Skip if the response is not 200 or 400
+        return trueStatusCode != 200 && trueStatusCode != 400 && config.skipAIModelUpdateWhenResponseIsNot200Or400
     }
 
 

@@ -1407,6 +1407,12 @@ class EMConfig {
             " be tried at fixing it.")
     var maxRepairAttemptsInResponseClassification = 100
 
+    @Experimental
+    @Min(1.0)
+    @Cfg("Mutating a random call for several time and pick the best candidate " +
+            "with minimum probabilty of being 400.")
+    var maxCallRandomMutation = 10
+
     enum class AIClassificationRepairActivation{
         /*
             TODO we might think of other techniques as well... and then experiment with them
@@ -1446,8 +1452,8 @@ class EMConfig {
 
     @Experimental
     @Cfg("Determines whether the AI response classifier skips model updates when the response " +
-            "indicates a server-side error with status code 500.")
-    var skipAIModelUpdateWhenResponseIs500 = false
+            "is not 200 or 400.")
+    var skipAIModelUpdateWhenResponseIsNot200Or400 = false
 
     @Cfg("Output a JSON file representing statistics of the fuzzing session, written in the WFC Report format." +
             " This also includes a index.html web application to visualize such data.")

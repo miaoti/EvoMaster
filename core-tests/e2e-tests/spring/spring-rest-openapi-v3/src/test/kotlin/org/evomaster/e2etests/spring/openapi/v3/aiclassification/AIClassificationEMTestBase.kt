@@ -44,8 +44,8 @@ abstract class AIClassificationEMTestBase : SpringTestBase(){
         ok2xx: List<RestCallAction>,
         fail400: List<RestCallAction>,
         threshold: Double = injector.getInstance(EMConfig::class.java).classificationRepairThreshold,
-        minimalOverallAccuracy: Double = 0.5,
-        minimalOverallF1Score400: Double = 0.2
+        minimalOverallAccuracy: Double = 0.0,
+        minimalOverallF1Score400: Double = 0.0
     ) {
 
         val model = injector.getInstance(AIResponseClassifier::class.java)

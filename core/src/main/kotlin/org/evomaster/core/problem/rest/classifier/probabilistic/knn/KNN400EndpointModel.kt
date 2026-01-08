@@ -23,7 +23,7 @@ class KNN400EndpointModel (
     dimension: Int? = null,
     encoderType: EMConfig.EncoderType= EMConfig.EncoderType.RAW,
     metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
-    private val k: Int = 3,
+    private val k: Int = 5,
     private val maxStoredSamples: Int = 10000,
     randomness: Randomness
 ): AbstractProbabilistic400EndpointModel(
