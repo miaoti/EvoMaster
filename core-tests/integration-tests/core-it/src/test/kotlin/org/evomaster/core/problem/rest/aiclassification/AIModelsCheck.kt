@@ -64,7 +64,7 @@ class AIModelsCheck : IntegrationTestRestBase() {
     val modelName = "KNN" // Choose "GAUSSIAN", "GLM", "KDE", "KNN", "NN", etc.
     val encoderType = "RAW" // Choose "RAW" or "NORMAL"
     val decisionMaking = "PROBABILITY" // Choose "PROBABILITY" or "THRESHOLD"
-    val metricType = "TIME_WINDOW"
+    val metricType = "FULL_HISTORY"
     val warmUpRep = 10
     val maxAttemptRepair = 100 // i.e., the classifier has 10 times the chances to pick an action with non-400 response
 

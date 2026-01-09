@@ -22,7 +22,7 @@ abstract class AbstractProbabilistic400EndpointModel(
     var warmup: Int = 10,
     var dimension: Int? = null,
     val encoderType: EMConfig.EncoderType = EMConfig.EncoderType.NORMAL,
-    val metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
+    val metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.FULL_HISTORY,
     val randomness: Randomness
 ) : AIModel {
 

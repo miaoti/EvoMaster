@@ -1448,7 +1448,7 @@ class EMConfig {
 
     @Experimental
     @Cfg("Determines which metric-tracking strategy is used by the AI response classifier.")
-    var aIClassificationMetrics = AIClassificationMetrics.TIME_WINDOW
+    var aIClassificationMetrics = AIClassificationMetrics.FULL_HISTORY
 
     @Experimental
     @Cfg("Determines whether the AI response classifier skips model updates when the response " +

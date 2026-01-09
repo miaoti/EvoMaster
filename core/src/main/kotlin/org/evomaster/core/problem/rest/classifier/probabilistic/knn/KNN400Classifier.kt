@@ -9,7 +9,7 @@ import org.evomaster.core.problem.rest.classifier.probabilistic.AbstractProbabil
 class KNN400Classifier(
     warmup: Int = 10,
     encoderType: EMConfig.EncoderType = EMConfig.EncoderType.NORMAL,
-    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
+    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.FULL_HISTORY,
     private val k: Int = 5,
     private val maxStoredSamples: Int = 10000,
     randomness: Randomness

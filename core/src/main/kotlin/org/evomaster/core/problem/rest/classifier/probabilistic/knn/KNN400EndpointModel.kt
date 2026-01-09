@@ -22,7 +22,7 @@ class KNN400EndpointModel (
     warmup: Int = 10,
     dimension: Int? = null,
     encoderType: EMConfig.EncoderType= EMConfig.EncoderType.RAW,
-    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
+    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.FULL_HISTORY,
     private val k: Int = 5,
     private val maxStoredSamples: Int = 10000,
     randomness: Randomness

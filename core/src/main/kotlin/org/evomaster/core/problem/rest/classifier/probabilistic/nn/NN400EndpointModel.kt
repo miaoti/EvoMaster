@@ -22,7 +22,7 @@ class NN400EndpointModel(
     warmup: Int = 10,
     dimension: Int? = null,
     encoderType: EMConfig.EncoderType = EMConfig.EncoderType.NORMAL,
-    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.TIME_WINDOW,
+    metricType: EMConfig.AIClassificationMetrics = EMConfig.AIClassificationMetrics.FULL_HISTORY,
     private val learningRate: Double = 0.01,
     randomness: Randomness
 ) : AbstractProbabilistic400EndpointModel(
