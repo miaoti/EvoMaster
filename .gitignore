@@ -163,3 +163,8 @@ core-tests/e2e-tests/spring/spring-rest-mysql/target
 /core-tests/jdk-8/spring-rest-openapi-v2-driver/target/
 /core-tests/jdk-8/spring-rest-openapi-v2-sut/target/
 /core-tests/jdk-8/spring-rest-openapi-v2-tests/target/
+core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithPrimitivesAndObjectsAsInputt/FunctionInReturnedObjectWithPrimitivesAndObjectsAsInputTest.kt
+core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithPrimitivesAndObjectsAsInputt/FunctionInReturnedObjectWithPrimitivesAndObjectsAsInputTest.kt
+core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithReturnHavingFunctionItself/FunctionInReturnedObjectWithReturnHavingFunctionItselfTest.kt
+core-tests/jdk-8/spring-rest-openapi-v2-sut/src/main/java/com/foo/rest/examples/spring/authenticatedswaggeraccesswithoutauthentication/AuthenticatedSwaggerApplicationWithoutAuthenticationWebSecurityConfig.java
+core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithPrimitivesAndObjectsAsInput/FunctionInReturnedObjectWithPrimitivesAndObjectsAsInputTest.kt
