@@ -168,3 +168,4 @@ core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etest
 core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithReturnHavingFunctionItself/FunctionInReturnedObjectWithReturnHavingFunctionItselfTest.kt
 core-tests/jdk-8/spring-rest-openapi-v2-sut/src/main/java/com/foo/rest/examples/spring/authenticatedswaggeraccesswithoutauthentication/AuthenticatedSwaggerApplicationWithoutAuthenticationWebSecurityConfig.java
 core-tests/e2e-tests/spring/spring-graphql/src/test/kotlin/org/evomaster/e2etests/spring/graphql/functionInReturnedObjectWithPrimitivesAndObjectsAsInput/FunctionInReturnedObjectWithPrimitivesAndObjectsAsInputTest.kt
+/core-tests/jdk-8
