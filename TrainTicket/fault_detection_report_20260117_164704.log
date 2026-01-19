@@ -1,0 +1,182 @@
+================================================================================
+                    FAULT DETECTION SUMMARY REPORT
+================================================================================
+
+Experiment:         trainticket_evomaster_20260117164706
+Generated:          2026-01-17 16:47:06
+Test Folder:        generated_tests
+Total Test Cases:   318
+
+================================================================================
+FAULT COVERAGE SUMMARY
+================================================================================
+
+Total Injected Faults:    10
+Detected Faults:          0 (0.0%)
+Undetected Faults:        10 (100.0%)
+
+Detection Progress:
+[--------------------------------------------------] 0.0%
+
+================================================================================
+DETECTED FAULTS (0)
+================================================================================
+
+No faults were detected in this test run.
+
+================================================================================
+UNDETECTED FAULTS (10)
+================================================================================
+
+1. INVALID_CONTACTS_NAME_FAULT
+   Service:       ts-admin-order-service
+   API:           POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+   Description:   Rejects order when contactsName is null, empty, or purely numeric
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+2. INVALID_SEAT_NUMBER_FAULT
+   Service:       ts-admin-order-service
+   API:           POST /api/v1/adminorderservice/adminorder, PUT /api/v1/adminorderservice/adminorder
+   Description:   Rejects order when seatNumber doesn't follow format (digits + uppercase letter)
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+3. INVALID_PRICE_RATE_FAULT
+   Service:       ts-admin-basic-info-service
+   API:           POST /api/v1/adminbasicservice/adminbasic/prices
+   Description:   Rejects price creation when price rates are non-positive
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+4. INVALID_ROUTE_ID_FAULT
+   Service:       ts-admin-basic-info-service
+   API:           POST /api/v1/adminbasicservice/adminbasic/prices
+   Description:   Rejects price creation when routeId is null or empty
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+5. INVALID_STATION_NAME_FAULT
+   Service:       ts-travel-plan-service
+   API:           POST /api/v1/travelplanservice/travelPlan/minStation
+   Description:   Rejects travel plan when station names are null or empty
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+6. INVALID_STATION_LENGTH_FAULT
+   Service:       ts-travel-plan-service
+   API:           POST /api/v1/travelplanservice/travelPlan/minStation
+   Description:   Rejects travel plan when station name length is outside valid range
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+7. INVALID_TRIP_ID_FORMAT_FAULT
+   Service:       ts-admin-travel-service
+   API:           DELETE /api/v1/admintravelservice/admintravel/{tripId}
+   Description:   Rejects trip deletion when tripId is null or empty
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+8. INVALID_TRIP_ID_LENGTH_FAULT
+   Service:       ts-admin-travel-service
+   API:           DELETE /api/v1/admintravelservice/admintravel/{tripId}
+   Description:   Rejects trip deletion when tripId length is invalid
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+9. INSUFFICIENT_STATIONS_FAULT
+   Service:       ts-admin-route-service
+   API:           POST /api/v1/adminrouteservice/adminroute
+   Description:   Rejects route creation when station list has fewer than 2 stations
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+10. INVALID_STATION_NAME_LENGTH_FAULT
+   Service:       ts-admin-route-service
+   API:           POST /api/v1/adminrouteservice/adminroute
+   Description:   Rejects route creation when station name length is outside valid range
+   Status:        NOT DETECTED
+
+   Trigger Conditions:
+     - Check if the API endpoint was tested
+     - Verify authentication is working for admin endpoints
+     - Consider increasing test duration
+
+--------------------------------------------------------------------------------
+
+================================================================================
+DETECTION STATISTICS
+================================================================================
+
+Fault Name                                    Status          Count     
+----------------------------------------------------------------------
+INVALID_CONTACTS_NAME_FAULT                   NOT DETECTED    0         
+INVALID_SEAT_NUMBER_FAULT                     NOT DETECTED    0         
+INVALID_PRICE_RATE_FAULT                      NOT DETECTED    0         
+INVALID_ROUTE_ID_FAULT                        NOT DETECTED    0         
+INVALID_STATION_NAME_FAULT                    NOT DETECTED    0         
+INVALID_STATION_LENGTH_FAULT                  NOT DETECTED    0         
+INVALID_TRIP_ID_FORMAT_FAULT                  NOT DETECTED    0         
+INVALID_TRIP_ID_LENGTH_FAULT                  NOT DETECTED    0         
+INSUFFICIENT_STATIONS_FAULT                   NOT DETECTED    0         
+INVALID_STATION_NAME_LENGTH_FAULT             NOT DETECTED    0         
+----------------------------------------------------------------------
+TOTAL                                         0/10             0         
+
+================================================================================
+END OF REPORT
+================================================================================

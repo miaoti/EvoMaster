@@ -1,0 +1,21 @@
+# EvoMaster Configuration for TrainTicket Black-Box Testing
+# Authentication configured for admin user
+
+# Authentication configuration
+auth:
+  - name: admin
+    loginEndpointAuth:
+      endpoint: /api/v1/users/login
+      verb: POST
+      contentType: application/json
+      payloadUserPwd:
+        username: admin
+        password: "222222"
+        usernameField: username
+        passwordField: password
+      token:
+        extractFrom: body
+        extractSelector: "/data/token"
+        sendIn: header
+        sendName: "Authorization"
+        sendTemplate: "Bearer {token}"
